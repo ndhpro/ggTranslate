@@ -14,7 +14,8 @@ const styles = {
     width: "48.5vw",
     boxShadow: "none",
     border: "1px solid #dadce0",
-    borderRadius: 8
+    borderRadius: 8,
+    marginLeft: 10,
   },
   title: {
     fontSize: 16,
