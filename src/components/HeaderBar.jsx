@@ -13,7 +13,19 @@ import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Button from '@material-ui/core/Button'
+import Popover from "@material-ui/core/Popover";
 import "./HeaderBar.css";
+import Google from '../img/Google.png';
+import Drive from '../img/Drive.png';
+import Maps from '../img/Maps.png';
+import Youtube from '../img/Youtube.png';
+import Photos from '../img/Photos.png';
+import Play from '../img/Play.png';
+import Plus from '../img/Plus.png';
+import Gmail from '../img/Gmail.png';
+import Calender from '../img/Calendar.png';
+
 
 const styles = theme => ({
   root: {
@@ -54,12 +66,25 @@ const styles = theme => ({
   listText: {
     fontSize: 13,
     paddingLeft: 32
-  }
+  },
+  textApps: {
+    fontSize: 13,
+    color: 'rgba(0,0,0,0.87)',
+    textAlign: 'center',
+    textTransform: 'none'
+  },
+  divApps: {
+    display:'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center'
+  },
 });
 
 class HeaderBar extends React.Component {
   state = {
-    left: false
+    left: false,
+    apps: false,
+    anchorEl: null
   };
 
   toggleDrawer = left => () => {
@@ -67,6 +92,19 @@ class HeaderBar extends React.Component {
       left
     });
   };
+
+  handleClickApp(event){
+    this.setState({
+      apps: true,
+      anchorEl: event.currentTarget 
+    })
+  }
+
+  handleClose(){
+    this.setState({
+      apps: false,
+    })
+  }
 
   render() {
     const { classes } = this.props;
@@ -139,9 +177,80 @@ class HeaderBar extends React.Component {
                 Dịch
               </Typography>
             </a>
-            <IconButton>
+            <IconButton
+              onClick={this.handleClickApp.bind(this)}
+            >
               <AppsIcon />
             </IconButton>
+            <Popover
+              anchorEl={this.state.anchorEl}
+              open={this.state.apps}
+              onClose={this.handleClose.bind(this)}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            >
+              <List>
+                <ListItem>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Google} />
+                      <span className={classes.textApps}>Tìm kiếm</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Youtube} />
+                      <span className={classes.textApps}>Youtube</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Gmail} />
+                      <span className={classes.textApps}>Gmail</span>
+                    </div>
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Drive} />
+                      <span className={classes.textApps}>Drive</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Calender} />
+                      <span className={classes.textApps}>Lịch</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Plus} />
+                      <span className={classes.textApps}>Google+</span>
+                    </div>
+                  </Button>
+                </ListItem>
+                <ListItem>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Photos} />
+                      <span className={classes.textApps}>Ảnh</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Maps} />
+                      <span className={classes.textApps}>Bản đồ</span>
+                    </div>
+                  </Button>
+                  <Button  onClick={this.handleClose.bind(this)} className={classes.btnApps}>
+                    <div className={classes.divApps}>
+                      <Avatar src={Play} />
+                      <span className={classes.textApps}>Google Play</span>
+                    </div>
+                  </Button>
+                </ListItem>
+              </List>
+            </Popover>
             <IconButton className={classes.avatarBtn}>
               <Avatar
                 alt="ndhpro"
