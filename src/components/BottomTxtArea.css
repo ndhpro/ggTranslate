@@ -1,0 +1,39 @@
+.root {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.left {
+  border: 1px solid #dadce0;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-bottom-left-radius: 8px;
+  flex-basis: 49.5vw;
+  overflow: auto;
+}
+
+.right {
+  background-color: #f5f5f5;
+  border: 1px solid #dadce0;
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-bottom-right-radius: 8px;
+  flex-basis: 49.5vw;
+  overflow: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex1 {
+  flex-grow: 1;
+}
+
+p {
+  color: #777;
+  font-size: 12px;
+  font-family: "Roboto";
+  line-height: 220%;
+}

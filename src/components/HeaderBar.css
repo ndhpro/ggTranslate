@@ -1,0 +1,11 @@
+.googleTitle::before {
+  content: url("https://www.gstatic.com/images/branding/googlelogo/svg/googlelogo_clr_74x24px.svg");
+  display: inline-block;
+  height: 24px;
+  width: 74px;
+  padding-top: 8px;
+}
+
+a {
+  text-decoration: none;
+}
