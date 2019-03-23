@@ -107,7 +107,7 @@ class SymsCard extends React.Component {
           <div>
             {this.state.data.map((obj, i) => (
               <div>
-                <Typography className={classes.type}>{obj.type}</Typography>
+                <Typography className={classes.type}>{obj.wordtype}</Typography>
                 <Typography className={classes.sym}>
                   {obj.sym.map((u, i) => (
                     <span keys={i} className={classes.syms}>

@@ -16,11 +16,11 @@ class App extends Component {
     vie: "Bản dịch",
     meaning: [
       {
-        type: "Danh từ",
+        wordtype: "Danh từ",
         meaning:
           "an electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.",
         example:
-          '"The laws were designed to prosecute people who hack into computers and steal information.",',
+          '"The laws were designed to prosecute people who hack into computers and steal information."',
         syms: [
           "personal computer",
           "PC",
@@ -35,7 +35,7 @@ class App extends Component {
         ]
       },
       {
-        type: "Động từ",
+        wordtype: "Động từ",
         meaning:
           "an electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.",
         example:
@@ -56,7 +56,7 @@ class App extends Component {
     ],
     trans: [
       {
-        type: "Danh từ",
+        wordtype: "Danh từ",
         translate: [
           {
             name: "máy điện toán",
@@ -79,7 +79,7 @@ class App extends Component {
         ]
       },
       {
-        type: "Động từ",
+        wordtype: "Động từ",
         translate: [
           {
             name: "máy điện toán",
@@ -106,17 +106,17 @@ class App extends Component {
     ],
     smallsyms: [
       {
-        type: "Danh từ",
+        wordtype: "Danh từ",
         sym: ["personal computer", "PC", "laptop"]
       },
       {
-        type: "Động từ",
+        wordtype: "Động từ",
         sym: ["netbook", "ultraportable"]
       }
     ],
     syms: [
       {
-        type: "Danh từ",
+        wordtype: "Danh từ",
         sym: [
           "personal computer",
           "PC",
@@ -131,7 +131,7 @@ class App extends Component {
         ]
       },
       {
-        type: "Động từ",
+        wordtype: "Động từ",
         sym: ["personal computer", "PC", "laptop", "netbook", "ultraportable"]
       }
     ]

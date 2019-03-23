@@ -84,7 +84,7 @@ function SimpleCard(props) {
         <div>
           {props.meaning.map((obj, i) => (
             <div keys={i} style={{ marginBottom: 15 }}>
-              <Typography className={classes.type}>{obj.type}</Typography>
+              <Typography className={classes.type}>{obj.wordtype}</Typography>
               <div className={classes.flex}>
                 <div className={classes.num1}>{i + 1}</div>
                 <div>
