@@ -26,7 +26,6 @@ import Plus from '../img/Plus.png';
 import Gmail from '../img/Gmail.png';
 import Calender from '../img/Calendar.png';
 
-
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -78,13 +77,44 @@ const styles = theme => ({
     flexDirection: 'column', 
     alignItems: 'center'
   },
+  avatarAcc: {
+    height: 96,
+    width: 96,
+    margin: 20,
+  },
+  accCard: {
+    display: 'flex',
+  },
+  accTypo: {
+    fontSize: 13,
+    marginTop: 20,
+    marginRight: 20
+  },
+  accBtn: {
+    backgroundColor: 'rgb(53, 122, 232)',
+    textTransform: 'none',
+    fontSize: 13,
+    marginTop: 10,
+  },
+  accLogout: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgb(245,245,245)'
+  },
+  logout: {
+    textTransform: 'none',
+    fontSize: 13,
+    margin: '10px 20px',
+  }
 });
 
 class HeaderBar extends React.Component {
   state = {
     left: false,
     apps: false,
-    anchorEl: null
+    anchorEl: null,
+    acc: false,
+    accEl: null
   };
 
   toggleDrawer = left => () => {
@@ -103,6 +133,19 @@ class HeaderBar extends React.Component {
   handleClose(){
     this.setState({
       apps: false,
+    })
+  }
+
+  handleClickAcc(event){
+    this.setState({
+      acc: true,
+      accEl: event.currentTarget 
+    })
+  }
+
+  handleCloseAcc(){
+    this.setState({
+      acc: false,
     })
   }
 
@@ -251,13 +294,42 @@ class HeaderBar extends React.Component {
                 </ListItem>
               </List>
             </Popover>
-            <IconButton className={classes.avatarBtn}>
+            <IconButton onClick={this.handleClickAcc.bind(this)} className={classes.avatarBtn}>
               <Avatar
                 alt="ndhpro"
                 src="https://lh3.googleusercontent.com/-meisa430nmA/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3reQEgoXBk8Mey-hFDIa1MfFesWUrA/s32-c-mo/photo.jpg"
                 className={classes.avatar}
               />
             </IconButton>
+            <Popover
+              anchorEl={this.state.accEl}
+              open={this.state.acc}
+              onClose={this.handleCloseAcc.bind(this)}
+              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+            >
+              <div className={classes.accCard}>
+                <Avatar 
+                  src='https://lh3.googleusercontent.com/-meisa430nmA/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3reQEgoXBk8Mey-hFDIa1MfFesWUrA/s96-c-mo/photo.jpg'
+                  className={classes.avatarAcc}
+                />
+                <Typography className={classes.accTypo}>
+                  <b>Nguyễn Doãn Hiếu</b> <br/>
+                  ndhpro.psa@gmail.com <br/>
+                  <a href="localhost:3000">Hồ sơ trên Google+ </a> 
+                  &nbsp;&nbsp; - &nbsp;&nbsp; 
+                  <a href="localhost:3000">Bảo mật </a>  <br/>
+                  <Button color='primary' variant='contained' classes={{root: classes.accBtn}}>
+                    Tài khoản Google
+                  </Button>
+                </Typography>
+              </div>
+              <Divider />
+              <div className={classes.accLogout}>
+                <Button color='default' variant='outlined' className={classes.logout}>
+                  Đăng xuất
+                </Button>
+              </div>
+            </Popover>
           </Toolbar>
         </AppBar>
       </div>
