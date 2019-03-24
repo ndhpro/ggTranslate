@@ -91,7 +91,7 @@ function SimpleCard(props) {
           {props.trans.map((obj, i) => (
             <div keys={i} style={{ marginBottom: 15 }}>
               <Typography className={classes.flex}>
-                <Typography className={classes.type}>{obj.wordtype}</Typography>
+                <Typography className={classes.type}>{obj.wordType}</Typography>
                 <Typography className={classes.freq} inline>
                   Tần suất
                   <HelpOutlineIcon className={classes.smallIcon} />

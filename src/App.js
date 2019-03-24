@@ -9,135 +9,33 @@ import MeaningCard from "./components/MeaningCard.jsx";
 import TransCard from "./components/TransCard.jsx";
 import ExampleCard from "./components/ExampleCard.jsx";
 import SymsCard from "./components/SymsCard.jsx";
+import "./request"
+import { PostApi } from "./request";
 
 class App extends Component {
   state = {
+    find: false,
     input: "",
     vie: "Bản dịch",
-    meaning: [
-      {
-        wordtype: "Danh từ",
-        meaning:
-          "an electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.",
-        example:
-          '"The laws were designed to prosecute people who hack into computers and steal information."',
-        syms: [
-          "personal computer",
-          "PC",
-          "laptop",
-          "netbook",
-          "ultraportable",
-          "desktop",
-          "terminal",
-          "mainframe",
-          "Internet appliance",
-          "puter"
-        ]
-      },
-      {
-        wordtype: "Động từ",
-        meaning:
-          "an electronic device for storing and processing data, typically in binary form, according to instructions given to it in a variable program.",
-        example:
-          '"The laws were designed to prosecute people who hack into computers and steal information.",',
-        syms: [
-          "personal computer",
-          "PC",
-          "laptop",
-          "netbook",
-          "ultraportable",
-          "desktop",
-          "terminal",
-          "mainframe",
-          "Internet appliance",
-          "puter"
-        ]
-      }
-    ],
-    trans: [
-      {
-        wordtype: "Danh từ",
-        translate: [
-          {
-            name: "máy điện toán",
-            meaning: ["computer", "microcomputer"]
-          },
-          {
-            name: "máy tính",
-            meaning: [
-              "computer",
-              "calculator",
-              "counter",
-              "comptometer",
-              "totalizator"
-            ]
-          },
-          {
-            name: "người tính toán",
-            meaning: ["computer", "counter"]
-          }
-        ]
-      },
-      {
-        wordtype: "Động từ",
-        translate: [
-          {
-            name: "máy điện toán",
-            meaning: ["computer", "microcomputer"]
-          },
-          {
-            name: "máy tính",
-            meaning: [
-              "computer",
-              "calculator",
-              "counter",
-              "comptometer",
-              "totalizator"
-            ]
-          }
-        ]
-      }
-    ],
-    example: [
-      "there's something wrong with my computer",
-      "computer network",
-      "she shut down her computer",
-      "Since then, the craft appears to have rebooted its own on-board computer more than 60 times."
-    ],
-    smallsyms: [
-      {
-        wordtype: "Danh từ",
-        sym: ["personal computer", "PC", "laptop"]
-      },
-      {
-        wordtype: "Động từ",
-        sym: ["netbook", "ultraportable"]
-      }
-    ],
-    syms: [
-      {
-        wordtype: "Danh từ",
-        sym: [
-          "personal computer",
-          "PC",
-          "laptop",
-          "netbook",
-          "ultraportable",
-          "desktop",
-          "terminal",
-          "mainframe",
-          "Internet appliance",
-          "puter"
-        ]
-      },
-      {
-        wordtype: "Động từ",
-        sym: ["personal computer", "PC", "laptop", "netbook", "ultraportable"]
-      }
-    ]
+    example: '',
+    meaning: '',
+    smallsyms: '',
+    syms: '',
   };
 
+  componentDidUpdate() {
+    console.log(PostApi('http://localhost:3001/getData',{"text": this.state.input})
+    .then(response => {
+      if (Object.keys(response).length !== 0 && !this.state.find){
+        this.setState(response);
+        this.setState({find: true});
+      }
+    })
+    );
+  }
+
   handleChange(event) {
+    this.setState({find: false})
     event.target.value === ""
       ? this.setState({
           input: "",
@@ -145,7 +43,7 @@ class App extends Component {
         })
       : this.setState({
           input: event.target.value,
-          vie: "máy vi tính"
+          vie: "Đang dịch..."
         });
   }
 
@@ -164,7 +62,7 @@ class App extends Component {
           <textarea id="rightArea" disabled value={this.state.vie} />
         </div>
         <TxtArea count={this.state.input.length} />
-        {this.state.input.length !== 0 ? (
+        {this.state.find ? (
           <div>
             <div className="root flex">
               <MeaningCard
