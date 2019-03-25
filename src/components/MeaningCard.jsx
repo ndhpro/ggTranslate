@@ -94,9 +94,11 @@ function SimpleCard(props) {
                   <Typography className={classes.exam}>
                     {obj.example}
                   </Typography>
-                  <Typography className={classes.exam}>
+                  { (obj.syms.length > 0)?
+                    <Typography className={classes.exam}>
                     Từ Đồng Nghĩa:
-                  </Typography>
+                    </Typography>:<div/>
+                  }
                   <Typography className={classes.sym}>
                     {obj.syms.map((u, i) => (
                       <span keys={i} className={classes.syms}>
